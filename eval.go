@@ -36,6 +36,14 @@ func (e *Eval) SogAtWindSpeed(windSpeed float64, twa float64) float64 {
 	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.SogAtIndex(idx, twa) })
 }
 
+func (e *Eval) BeatAngle(windSpeed float64) float64 {
+	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.PolarTable.Rows[idx].OptUp.Angle })
+}
+
+func (e *Eval) GybeAngle(windSpeed float64) float64 {
+	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.PolarTable.Rows[idx].OptDn.Angle })
+}
+
 func linearInter(x float64, table []int, f func(int) float64) float64 {
 	for i := 0; i+1 < len(table); i++ {
 		if x <= float64(table[i+1]) {
