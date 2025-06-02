@@ -1,0 +1,4 @@
+github.com/cnkei/gospline v0.0.0-20191204052713-d67fac29a294 h1:zIFcK9T9qytnmXuKt5Z7jG66C8c8FJjy8rtxOmVVm0o=
+github.com/cnkei/gospline v0.0.0-20191204052713-d67fac29a294/go.mod h1:DXXGDL64/wxXgBSgmGMEL0vYC0tdvpgNhkJrvavhqDM=
+github.com/taruti/go-orcdata v0.0.0-20250602131031-fcfc6f64033f h1:Kns13DwbSchsRq2emRVi9erGFNmd7GRBdLKktp75FeY=
+github.com/taruti/go-orcdata v0.0.0-20250602131031-fcfc6f64033f/go.mod h1:Oe0xmYHzo67BRV4lqvD5RbdiCZiXQV+NMwpFbslAseM=
