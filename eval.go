@@ -4,11 +4,11 @@ import "github.com/cnkei/gospline"
 
 type Eval struct {
 	*PolarTable
-	sps        []gospline.Spline
+	Splines    []gospline.Spline
 	windSpeeds []int
 }
 
-func EvalPolar(p *PolarTable) *Eval {
+func (p *PolarTable) Eval() *Eval {
 	sps := make([]gospline.Spline, len(p.Rows))
 	wss := make([]int, len(p.Rows))
 	for i, row := range p.Rows {
@@ -23,13 +23,13 @@ func EvalPolar(p *PolarTable) *Eval {
 	}
 	return &Eval{
 		PolarTable: p,
-		sps:        sps,
+		Splines:    sps,
 		windSpeeds: wss,
 	}
 }
 
 func (e *Eval) SogAtIndex(idx int, twa float64) float64 {
-	return e.sps[idx].At(twa)
+	return e.Splines[idx].At(twa)
 }
 
 func (e *Eval) SogAtWindSpeed(windSpeed float64, twa float64) float64 {
