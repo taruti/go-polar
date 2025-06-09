@@ -28,12 +28,12 @@ func (p *PolarTable) Eval() *Eval {
 	}
 }
 
-func (e *Eval) SogAtIndex(idx int, twa float64) float64 {
+func (e *Eval) SpeedAtIndex(idx int, twa float64) float64 {
 	return e.Splines[idx].At(twa)
 }
 
-func (e *Eval) SogAtWindSpeed(windSpeed float64, twa float64) float64 {
-	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.SogAtIndex(idx, twa) })
+func (e *Eval) Speed(windSpeed float64, twa float64) float64 {
+	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.SpeedAtIndex(idx, twa) })
 }
 
 func (e *Eval) BeatAngle(windSpeed float64) float64 {
