@@ -33,18 +33,18 @@ func (e *Eval) SpeedAtIndex(idx int, twa float64) float64 {
 }
 
 func (e *Eval) Speed(windSpeed float64, twa float64) float64 {
-	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.SpeedAtIndex(idx, twa) })
+	return LinearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.SpeedAtIndex(idx, twa) })
 }
 
 func (e *Eval) BeatAngle(windSpeed float64) float64 {
-	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.PolarTable.Rows[idx].OptUp.Angle })
+	return LinearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.PolarTable.Rows[idx].OptUp.Angle })
 }
 
 func (e *Eval) GybeAngle(windSpeed float64) float64 {
-	return linearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.PolarTable.Rows[idx].OptDn.Angle })
+	return LinearInter(windSpeed, e.windSpeeds, func(idx int) float64 { return e.PolarTable.Rows[idx].OptDn.Angle })
 }
 
-func linearInter(x float64, table []int, f func(int) float64) float64 {
+func LinearInter(x float64, table []int, f func(int) float64) float64 {
 	for i := 0; i+1 < len(table); i++ {
 		if x <= float64(table[i+1]) {
 			// y=((y2-y1)/(x2-x1))(x-x1)+y1
@@ -61,5 +61,23 @@ func linearInter(x float64, table []int, f func(int) float64) float64 {
 	m := (y2 - y1) / float64(table[i+1]-table[i])
 	y := m*(x-float64(table[i])) + y1
 	return y
+}
 
+func LinearInterF64(x float64, table []float64, f func(int) float64) float64 {
+	for i := 0; i+1 < len(table); i++ {
+		if x <= float64(table[i+1]) {
+			// y=((y2-y1)/(x2-x1))(x-x1)+y1
+			y1 := f(i)
+			y2 := f(i + 1)
+			m := (y2 - y1) / float64(table[i+1]-table[i])
+			y := m*(x-float64(table[i])) + y1
+			return y
+		}
+	}
+	i := len(table) - 2
+	y1 := f(i)
+	y2 := f(i + 1)
+	m := (y2 - y1) / float64(table[i+1]-table[i])
+	y := m*(x-float64(table[i])) + y1
+	return y
 }
