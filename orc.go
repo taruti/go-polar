@@ -8,9 +8,9 @@ import (
 	"github.com/taruti/go-orcdata"
 )
 
-// OrcToFastPolar parses raw ORC certificate data and directly bakes it
+// OrcToPolar parses raw ORC certificate data and directly bakes it
 // into the optimized, zero-allocation 2D FastPolarTable layout using PCHIP physics.
-func OrcToFastPolar(b *orcdata.Data) (*FastPolarTable, error) {
+func OrcToPolar(b *orcdata.Data) (*Polar, error) {
 	if b == nil || len(b.Allowances.WindSpeeds) == 0 {
 		return nil, errors.New("invalid or empty ORC data payload")
 	}
