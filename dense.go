@@ -4,7 +4,12 @@ import (
 	"errors"
 	"math"
 	"sort"
+
+	"github.com/taruti/go-orcdata"
 )
+
+type Polar = FastPolarTable
+type OrcData = orcdata.Data
 
 const (
 	MaxWindRows = 26 // Wind boundaries: 0 up to 25 knots discrete rows
